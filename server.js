@@ -10,6 +10,7 @@ if (!process.env.MONGODB_URI || !process.env.JWT_SECRET) {
   process.exit(1);
 }
 const app = express();
+   app.set('trust proxy', 1);
 app.use(cors());
 app.use(express.json());
 app.use('/api/auth', rateLimit({ windowMs: 15 * 60 * 1000, max: 50 }));   // slows brute-force logins
